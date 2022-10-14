@@ -14,8 +14,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText editUsername;
     private EditText editPassword;
-    private TextView notAccountYet;
-    private Button btnSignIn;
+    private Button btnLogin;
 
     private final String REQUIRE = "Require";
 
@@ -32,10 +31,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void  Binding(){
         editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
-        notAccountYet = findViewById(R.id.notAccountYet);
-        btnSignIn = findViewById(R.id.btnSignIn);
-        notAccountYet.setOnClickListener(this);
-        btnSignIn.setOnClickListener(this);
+        btnLogin = findViewById(R.id.btnSignIn);
+        btnLogin.setOnClickListener(this);
     }
 
 
