@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct;
+package api;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct;
+package api;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -6,6 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
+    private final static String baseUrl = "https://hrm.lsat.vn/";
 
     public static Retrofit getRetro(){
 
@@ -16,10 +17,9 @@ public class ApiClient {
 
         Retrofit retroFit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://hrm.lsat.vn/sell/")
+                .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .build();
-
         return retroFit;
     }
 

@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct;
+package api;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -6,7 +6,10 @@ import retrofit2.http.POST;
 
 public interface UserService {
 
-    @POST("/auths/jwt/")
+    @POST("/sell/auths/jwt")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
+
+
+
 
 }

@@ -1,7 +1,6 @@
-package com.prm.prm391_sellproduct;
+package model;
 
-public class LoginRequest {
-
+public class User {
     private String username;
     private String password;
 
