@@ -11,24 +11,19 @@ import android.widget.TextView;
 
 import api.LoginResponse;
 
-public class MainActivity extends AppCompatActivity {
-LoginResponse loginResponse;
-TextView username, authUser;
+public class UserActivity extends AppCompatActivity {
+    LoginResponse loginResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user);
 
-        username = findViewById(R.id.txtView);
-        authUser = findViewById(R.id.txtViewAuth);
-        String token;
+
         Intent intent = getIntent();
         if(intent.getExtras() != null){
             loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            token = loginResponse.getId_token();
-            username.setText(token);
-            authUser.setText(getAuthClaimJWT(token));
-            Log.e("TAG", "====>" + loginResponse.getResult());
+
+            Log.e("TAG", "Da vo duoc UserActivity roi nha ====>" + loginResponse.getResult());
         }
     }
 }

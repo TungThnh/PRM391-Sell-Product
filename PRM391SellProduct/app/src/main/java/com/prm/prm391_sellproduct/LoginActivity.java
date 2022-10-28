@@ -8,16 +8,22 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 
 import api.ApiClient;
 import api.LoginRequest;
 import api.LoginResponse;
+import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
+    private String token, auth;
 
     private final String REQUIRE = "Require";
 
@@ -57,6 +64,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
     public void loginAccount(LoginRequest loginRequest){
         Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
@@ -64,7 +76,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.isSuccessful()){
                     LoginResponse loginResponse = response.body();
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class).putExtra("data", loginResponse));
+                    token = loginResponse.getId_token();
+                    auth = getAuthClaimJWT(token);
+
+                    if(auth.equals("User")){
+                        startActivity(new Intent(LoginActivity.this,UserActivity.class).putExtra("data", loginResponse));
+                    } if(auth.equals("ADMIN")) {
+                        startActivity(new Intent(LoginActivity.this,AdminActivity.class).putExtra("data", loginResponse));
+                    }
                     finish();
 
                 }else{
@@ -81,9 +100,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+//    public static void decodedJwt(String newToken) throws Exception{
+//        try{
+//            String[] split = newToken.split("\\.");
+//            Log.d("JWT_DECODED", "Header: " + getJson);
+//        }catch (UnsupportedEncodingException e){
+////            Log.e("ERROR", "Loi decode roi" + ex);
+////            ex.getMessage();
+//        }
+//    }
 
-    @Override
-    public void onClick(View view) {
-
+    public static String getAuthClaimJWT(String jwtToken){
+        JWT parsedJWT = new JWT(jwtToken);
+        Claim getClaimFormJWT = parsedJWT.getClaim("auth");
+        String valueGet = getClaimFormJWT.asString();
+        return valueGet;
     }
+
 }
