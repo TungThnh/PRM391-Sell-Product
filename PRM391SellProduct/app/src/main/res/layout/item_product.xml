@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imgItem"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/asus_tuf_gami"
+        android:layout_width="35dp"
+        android:layout_height="35dp"/>
+    <TextView
+        android:id="@+id/txtNameItem"
+        android:text="Laptop"
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/purple_200"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
