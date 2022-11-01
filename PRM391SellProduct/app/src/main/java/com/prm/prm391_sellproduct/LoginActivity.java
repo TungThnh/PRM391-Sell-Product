@@ -2,13 +2,9 @@ package com.prm.prm391_sellproduct;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +13,9 @@ import android.widget.Toast;
 import com.auth0.android.jwt.Claim;
 import com.auth0.android.jwt.JWT;
 
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-
 import api.ApiClient;
-import api.LoginRequest;
+import model.LoginRequest;
 import api.LoginResponse;
-import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
