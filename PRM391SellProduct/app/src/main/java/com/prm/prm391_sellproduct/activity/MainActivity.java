@@ -1,10 +1,12 @@
-package com.prm.prm391_sellproduct;
+package com.prm.prm391_sellproduct.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -13,8 +15,12 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.material.navigation.NavigationView;
+import com.prm.prm391_sellproduct.R;
+import com.prm.prm391_sellproduct.adapter.NewProductAdapter;
 import com.prm.prm391_sellproduct.adapter.ProductTypeAdapter;
 import com.prm.prm391_sellproduct.model.ModelProductType;
+import com.prm.prm391_sellproduct.model.NewProduct;
+import com.prm.prm391_sellproduct.model.NewProductModel;
 import com.prm.prm391_sellproduct.model.ProductType;
 import com.prm.prm391_sellproduct.retrofit.APISell;
 import com.prm.prm391_sellproduct.retrofit.RetrofitClient;
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     List<ProductType> listProductType;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     APISell apiSell;
+    List<NewProduct> newProductArray;
+    NewProductModel newProductModel;
+    NewProductAdapter newProductAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,36 +56,60 @@ public class MainActivity extends AppCompatActivity {
         if (isConnected(this)){
             Toast.makeText(getApplicationContext(),"Have Internet", Toast.LENGTH_LONG).show();
             getProductType();
+            getNewProduct();
         }else {
             Toast.makeText(getApplicationContext(),"No Internet", Toast.LENGTH_LONG).show();
         }
     }
 
+    private void getNewProduct() {
+        compositeDisposable.add(apiSell.getNewProductModel()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subcribe(
+                        newProductModel -> {
+                            if (newProductModel.getSuccess()){
+                                newProductArray = newProductModel.getResult();
+                                newProductAdapter = new NewProductAdapter(getApplicationContext(), newProductArray);
+                                recyclerView.setAdapter(newProductAdapter);
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),"cannot connect to server"+ throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                ));
+    }
+
     private void getProductType() {
-        compositeDisposable.add(apiSell.getProductType()
-                .subcribeOn(Schedulers.io())
+        compositeDisposable.add(apiSell.getModelProductType()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subcribe(
                         modelProductType -> {
-                            if (modelProductType.isSuccess()){
-                                Toast.makeText(getApplicationContext(), modelProductType.getResult().get(0).getProductName(), Toast.LENGTH_LONG).show();
+                            if (modelProductType.isSuccess()) {
+                                listProductType = modelProductType.getResult();
+                                productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
+                                listViewHome.setAdapter(modelProductType);
                             }
                         }
                 ));
 
     }
 
+
     private void AnhXa(){
         toolbar = findViewById(R.id.toolbarHome);
         viewFlipper = findViewById(R.id.viewFliper);
         recyclerView = findViewById(R.id.recycleView);
         navigationView = findViewById(R.id.navigationView);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         listViewHome = findViewById(R.id.listViewHome);
-
         listProductType = new ArrayList<>();
-
         productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
         listViewHome.setAdapter(productTypeAdapter);
+        newProductArray = new ArrayList<>();
     }
     private boolean isConnected(Context context){
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -93,4 +126,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
 }

@@ -1,13 +1,13 @@
 package com.prm.prm391_sellproduct.model;
 
 public class ModelProductType {
-    boolean success;
+    static boolean success;
     String status;
     String message;
     String code;
     String type;
 
-    public boolean isSuccess() {
+    public static boolean isSuccess() {
         return success;
     }
 
