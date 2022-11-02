@@ -1,4 +1,4 @@
-package model;
+package request;
 
 public class LoginRequest {
 

@@ -1,6 +1,6 @@
-package com.prm.prm391_sellproduct;
+package com.prm.prm391_sellproduct.tung.activity;
 
-import static com.prm.prm391_sellproduct.LoginActivity.getAuthClaimJWT;
+import static com.prm.prm391_sellproduct.tung.activity.LoginActivity.getAuthClaimJWT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import api.LoginResponse;
+import com.prm.prm391_sellproduct.R;
+
+import response.LoginResponse;
 
 public class MainActivity extends AppCompatActivity {
 LoginResponse loginResponse;
 TextView username, authUser;
+String getPara = "auth";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,7 @@ TextView username, authUser;
             loginResponse = (LoginResponse) intent.getSerializableExtra("data");
             token = loginResponse.getId_token();
             username.setText(token);
-            authUser.setText(getAuthClaimJWT(token));
+            authUser.setText(getAuthClaimJWT(token,getPara));
             Log.e("TAG", "====>" + loginResponse.getResult());
         }
     }

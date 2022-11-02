@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct;
+package com.prm.prm391_sellproduct.tung.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,10 +12,11 @@ import android.widget.Toast;
 
 import com.auth0.android.jwt.Claim;
 import com.auth0.android.jwt.JWT;
+import com.prm.prm391_sellproduct.R;
 
 import api.ApiClient;
-import model.LoginRequest;
-import api.LoginResponse;
+import request.LoginRequest;
+import response.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
     private String token, auth;
+    private String getPara = "auth";
 
     private final String REQUIRE = "Require";
 
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     loginRequest.setUsername(edtUsername.getText().toString());
                     loginRequest.setPassword(edtPassword.getText().toString());
+
                     loginAccount(loginRequest);
                 }
             }
@@ -69,12 +72,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(response.isSuccessful()){
                     LoginResponse loginResponse = response.body();
                     token = loginResponse.getId_token();
-                    auth = getAuthClaimJWT(token);
+                    auth = getAuthClaimJWT(token,getPara);
 
                     if(auth.equals("User")){
-                        startActivity(new Intent(LoginActivity.this,UserActivity.class).putExtra("data", loginResponse));
+                        startActivity(new Intent(LoginActivity.this, UserActivity.class).putExtra("data", loginResponse));
                     } if(auth.equals("ADMIN")) {
-                        startActivity(new Intent(LoginActivity.this,AdminActivity.class).putExtra("data", loginResponse));
+                        startActivity(new Intent(LoginActivity.this, AddProductActivity.class).putExtra("data", loginResponse));
                     }
                     finish();
 
@@ -102,9 +105,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        }
 //    }
 
-    public static String getAuthClaimJWT(String jwtToken){
+    public static String getAuthClaimJWT(String jwtToken, String getPara){
         JWT parsedJWT = new JWT(jwtToken);
-        Claim getClaimFormJWT = parsedJWT.getClaim("auth");
+        Claim getClaimFormJWT = parsedJWT.getClaim(getPara);
         String valueGet = getClaimFormJWT.asString();
         return valueGet;
     }

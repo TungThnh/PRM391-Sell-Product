@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct;
+package com.prm.prm391_sellproduct.tung.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,27 +6,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.prm.prm391_sellproduct.R;
 
-import api.ApiClient;
-import api.LoginResponse;
-import api.UserService;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import response.LoginResponse;
 
-public class AdminActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity {
     LoginResponse loginResponse;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_user);
+
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
             loginResponse = (LoginResponse) intent.getSerializableExtra("data");
 
-            Log.e("TAG", "Da vo duoc AdminActivity roi nha ====>" + loginResponse.getResult());
+            Log.e("TAG", "Da vo duoc UserActivity roi nha ====>" + loginResponse.getResult());
         }
     }
-
-
 }

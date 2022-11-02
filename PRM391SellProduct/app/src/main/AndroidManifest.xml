@@ -16,18 +16,20 @@
         android:theme="@style/Theme.PRM391SellProduct"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name=".MainActivity"
+            android:name=".tung.activity.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".UserActivity"
+            android:name=".tung.activity.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".tung.activity.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".tung.activity.AdminActivity"
+            android:exported="true" />
+        <activity
+            android:name=".tung.activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
