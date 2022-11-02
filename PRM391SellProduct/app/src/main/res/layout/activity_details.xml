@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
     <LinearLayout
-        android:id="@+id/lautou1"
+        android:id="@+id/layout1"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -66,33 +66,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            app:layout_consttaintTop_toBottomOf="@id/layout1"
-            app:layout_consttaintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@string/m_t_chi_ti_t_s_n_ph_m"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtDecribe"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+<!--        <LinearLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            app:layout_consttaintTop_toBottomOf="@id/layout1"-->
+<!--            app:layout_consttaintBottom_toBottomOf="parent"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <TextView-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="@string/m_t_chi_ti_t_s_n_ph_m"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <ScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/txtDecribe"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"/>-->
 
-            </ScrollView>
-        </LinearLayout>
+<!--            </ScrollView>-->
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:src="@drawable/iconnew_w512"
+            android:src="@drawable/fpt"
             android:layout_gravity="top|right"
             android:layout_width="30dp"
             android:layout_height="30dp"/>

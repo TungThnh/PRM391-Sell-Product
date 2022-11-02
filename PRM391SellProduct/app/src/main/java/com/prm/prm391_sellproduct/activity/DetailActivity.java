@@ -28,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     private void initView(){
         productName = findViewById(R.id.txtProductName);
         price = findViewById(R.id.txtPrice);
-        decribe = findViewById(R.id.txtDecribe);
+//        decribe = findViewById(R.id.txtDecribe);
         btnAdd = findViewById(R.id.btnAddtocart);
         spinner = findViewById(R.id.spinner);
         imgProduct = findViewById(R.id.imgDetails);

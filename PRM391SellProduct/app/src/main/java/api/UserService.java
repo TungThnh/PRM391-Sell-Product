@@ -6,6 +6,7 @@ import response.AddNewProductResponse;
 import response.LoginResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface UserService {
@@ -14,7 +15,7 @@ public interface UserService {
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
     @POST("sell/items")
-    Call<AddNewProductResponse> addProduct(@Body AddProductRequest addProductRequest);
+    Call<AddNewProductResponse> addProduct(@Header ("Authorization") String authToken, @Body AddProductRequest addProductRequest);
 
 
 }

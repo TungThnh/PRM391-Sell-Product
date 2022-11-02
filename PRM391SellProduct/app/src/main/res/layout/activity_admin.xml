@@ -29,7 +29,6 @@
         android:layout_marginTop="328dp"
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="384dp"
-        android:text="cai nay show noi dung"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 import com.prm.prm391_sellproduct.R;
 import com.prm.prm391_sellproduct.model.NewProduct;
 
@@ -38,7 +38,7 @@ public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.My
         NewProduct newProduct = array.get(position);
         holder.txtProductName.setText(newProduct.getProductName());
         holder.txtPrice.setText(newProduct.getProductPrice());
-        Glide.with(context).load(newProduct.getImage()).into(holder.imgProduct);
+//        Glide.with(context).load(newProduct.getImage()).into(holder.imgProduct);
     }
 
     @Override

@@ -51,80 +51,80 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        apiSell = RetrofitClient.getInstance(Utils.BASE_URL).create(APISell.class);
-        AnhXa();
-        if (isConnected(this)){
-            Toast.makeText(getApplicationContext(),"Have Internet", Toast.LENGTH_LONG).show();
-            getProductType();
-            getNewProduct();
-        }else {
-            Toast.makeText(getApplicationContext(),"No Internet", Toast.LENGTH_LONG).show();
-        }
+//        apiSell = RetrofitClient.getInstance(Utils.BASE_URL).create(APISell.class);
+//        AnhXa();
+//        if (isConnected(this)){
+//            Toast.makeText(getApplicationContext(),"Have Internet", Toast.LENGTH_LONG).show();
+//            getProductType();
+//            getNewProduct();
+//        }else {
+//            Toast.makeText(getApplicationContext(),"No Internet", Toast.LENGTH_LONG).show();
+//        }
     }
 
-    private void getNewProduct() {
-        compositeDisposable.add(apiSell.getNewProductModel()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subcribe(
-                        newProductModel -> {
-                            if (newProductModel.getSuccess()){
-                                newProductArray = newProductModel.getResult();
-                                newProductAdapter = new NewProductAdapter(getApplicationContext(), newProductArray);
-                                recyclerView.setAdapter(newProductAdapter);
-                            }
-                        },
-                        throwable -> {
-                            Toast.makeText(getApplicationContext(),"cannot connect to server"+ throwable.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                ));
-    }
-
-    private void getProductType() {
-        compositeDisposable.add(apiSell.getModelProductType()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subcribe(
-                        modelProductType -> {
-                            if (modelProductType.isSuccess()) {
-                                listProductType = modelProductType.getResult();
-                                productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
-                                listViewHome.setAdapter(modelProductType);
-                            }
-                        }
-                ));
-
-    }
-
-
-    private void AnhXa(){
-        toolbar = findViewById(R.id.toolbarHome);
-        viewFlipper = findViewById(R.id.viewFliper);
-        recyclerView = findViewById(R.id.recycleView);
-        navigationView = findViewById(R.id.navigationView);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        listViewHome = findViewById(R.id.listViewHome);
-        listProductType = new ArrayList<>();
-        productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
-        listViewHome.setAdapter(productTypeAdapter);
-        newProductArray = new ArrayList<>();
-    }
-    private boolean isConnected(Context context){
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            // connected to the internet
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                // connected to wifi
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                // connected to mobile data
-            } return true;
-        } else {
-            // not connected to the internet
-        }
-        return false;
-    }
+//    private void getNewProduct() {
+//        compositeDisposable.add(apiSell.getNewProductModel()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subcribe(
+//                        newProductModel -> {
+//                            if (newProductModel.getSuccess()){
+//                                newProductArray = newProductModel.getResult();
+//                                newProductAdapter = new NewProductAdapter(getApplicationContext(), newProductArray);
+//                                recyclerView.setAdapter(newProductAdapter);
+//                            }
+//                        },
+//                        throwable -> {
+//                            Toast.makeText(getApplicationContext(),"cannot connect to server"+ throwable.getMessage(), Toast.LENGTH_LONG).show();
+//                        }
+//                ));
+//    }
+//
+//    private void getProductType() {
+//        compositeDisposable.add(apiSell.getModelProductType()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subcribe(
+//                        modelProductType -> {
+//                            if (modelProductType.isSuccess()) {
+//                                listProductType = modelProductType.getResult();
+//                                productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
+//                                listViewHome.setAdapter(modelProductType);
+//                            }
+//                        }
+//                ));
+//
+//    }
+//
+//
+//    private void AnhXa(){
+//        toolbar = findViewById(R.id.toolbarHome);
+//        viewFlipper = findViewById(R.id.viewFliper);
+//        recyclerView = findViewById(R.id.recycleView);
+//        navigationView = findViewById(R.id.navigationView);
+//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this,2);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        listViewHome = findViewById(R.id.listViewHome);
+//        listProductType = new ArrayList<>();
+//        productTypeAdapter = new ProductTypeAdapter(listProductType, getApplicationContext());
+//        listViewHome.setAdapter(productTypeAdapter);
+//        newProductArray = new ArrayList<>();
+//    }
+//    private boolean isConnected(Context context){
+//        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+//        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+//        if (activeNetwork != null) {
+//            // connected to the internet
+//            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+//                // connected to wifi
+//            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+//                // connected to mobile data
+//            } return true;
+//        } else {
+//            // not connected to the internet
+//        }
+//        return false;
+//    }
 
 }

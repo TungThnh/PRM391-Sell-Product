@@ -1,5 +1,8 @@
 package api;
 
+import android.text.TextUtils;
+
+import okhttp3.Authenticator;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -27,4 +30,6 @@ public class ApiClient {
         UserService userService = getRetro().create(UserService.class);
         return userService;
     }
+
+
 }

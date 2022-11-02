@@ -1,10 +1,13 @@
 package com.prm.prm391_sellproduct.tung.activity;
 
+import static com.prm.prm391_sellproduct.tung.activity.LoginActivity.getAuthClaimJWT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -21,16 +24,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddProductActivity extends AppCompatActivity {
-
+    LoginResponse loginResponse;
     TextInputEditText inputName, inputCode,
             inputDes, inputUnit, inputPrice, inputQuantity;
     Button btnThem;
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
         binding();
+        //get token
+        Intent intent = getIntent();
+        if(intent.getExtras() != null){
+            loginResponse = (LoginResponse) intent.getSerializableExtra("data");
+            token = "Bearer " + loginResponse.getId_token();
+        }
+
 
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +68,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void addNewProduct(AddProductRequest addProductRequest){
-        Call<AddNewProductResponse> newProductResponseCall = ApiClient.getService().addProduct(addProductRequest);
+        Call<AddNewProductResponse> newProductResponseCall = ApiClient.getService().addProduct(token, addProductRequest);
         newProductResponseCall.enqueue(new Callback<AddNewProductResponse>() {
             @Override
             public void onResponse(Call<AddNewProductResponse> call, Response<AddNewProductResponse> response) {

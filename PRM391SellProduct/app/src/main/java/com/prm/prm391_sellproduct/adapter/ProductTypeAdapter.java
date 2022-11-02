@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 import com.prm.prm391_sellproduct.R;
 import com.prm.prm391_sellproduct.model.ProductType;
 
@@ -54,7 +54,7 @@ public class ProductTypeAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
             viewHolder .txtProductName.setText(arrayList.get(position).getProductName());
-            Glide.with(context).load(arrayList.get(position).getProductImage()).into(viewHolder.imgProduct);
+//            Glide.with(context).load(arrayList.get(position).getProductImage()).into(viewHolder.imgProduct);
         }
         return view ;
     }
