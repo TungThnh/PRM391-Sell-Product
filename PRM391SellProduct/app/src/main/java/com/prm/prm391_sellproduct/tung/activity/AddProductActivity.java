@@ -1,13 +1,10 @@
 package com.prm.prm391_sellproduct.tung.activity;
 
-import static com.prm.prm391_sellproduct.tung.activity.LoginActivity.getAuthClaimJWT;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,7 +14,7 @@ import com.prm.prm391_sellproduct.R;
 
 import api.ApiClient;
 import request.AddProductRequest;
-import response.AddNewProductResponse;
+import response.ProductResponse;
 import response.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,8 +51,9 @@ public class AddProductActivity extends AppCompatActivity {
                 }else{
                     AddProductRequest addProductRequest = new AddProductRequest();
 
-                    addProductRequest.setName(inputName.getText().toString());
+
                     addProductRequest.setCode(inputCode.getText().toString());
+                    addProductRequest.setName(inputName.getText().toString());
                     addProductRequest.setDescription(inputDes.getText().toString());
                     addProductRequest.setPrice(Float.parseFloat(inputPrice.getText().toString()));
                     addProductRequest.setUnit(inputUnit.getText().toString());
@@ -68,13 +66,13 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void addNewProduct(AddProductRequest addProductRequest){
-        Call<AddNewProductResponse> newProductResponseCall = ApiClient.getService().addProduct(token, addProductRequest);
-        newProductResponseCall.enqueue(new Callback<AddNewProductResponse>() {
+        Call<ProductResponse> newProductResponseCall = ApiClient.getService().addProduct(token, addProductRequest);
+        newProductResponseCall.enqueue(new Callback<ProductResponse>() {
             @Override
-            public void onResponse(Call<AddNewProductResponse> call, Response<AddNewProductResponse> response) {
+            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
                 if(response.isSuccessful()){
-                    AddNewProductResponse newProductResponse= response.body();
-                    startActivity(new Intent(AddProductActivity.this, AdminActivity.class).putExtra("data", newProductResponse));
+                    ProductResponse newProductResponse= response.body();
+                    startActivity(new Intent(AddProductActivity.this, AdminActivity.class).putExtra("dataProduct", newProductResponse));
                     finish();
 
                 }else{
@@ -84,7 +82,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AddNewProductResponse> call, Throwable t) {
+            public void onFailure(Call<ProductResponse> call, Throwable t) {
                 String meassageToast = t.getLocalizedMessage();
                 Toast.makeText(AddProductActivity.this,meassageToast, Toast.LENGTH_SHORT).show();
             }

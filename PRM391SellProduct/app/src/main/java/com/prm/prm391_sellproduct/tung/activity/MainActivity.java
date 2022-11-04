@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.prm.prm391_sellproduct.R;
 
 import response.LoginResponse;
+import response.ProductResponse;
 
 public class MainActivity extends AppCompatActivity {
 LoginResponse loginResponse;
+
 TextView username, authUser;
 String getPara = "auth";
     @Override

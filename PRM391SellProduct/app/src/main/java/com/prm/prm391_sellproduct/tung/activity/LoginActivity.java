@@ -15,6 +15,7 @@ import com.auth0.android.jwt.JWT;
 import com.prm.prm391_sellproduct.R;
 
 import api.ApiClient;
+import model.User;
 import request.LoginRequest;
 import response.LoginResponse;
 import retrofit2.Call;

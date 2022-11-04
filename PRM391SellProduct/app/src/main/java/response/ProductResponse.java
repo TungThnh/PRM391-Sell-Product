@@ -2,8 +2,8 @@ package response;
 
 import java.io.Serializable;
 
-public class AddNewProductResponse implements Serializable {
-    private float id;
+public class ProductResponse implements Serializable {
+    private Long id;
     private String maker_id;
     private String maker_date;
     private String checker_id;
@@ -18,12 +18,23 @@ public class AddNewProductResponse implements Serializable {
     private String description;
     private String price;
     private String unit;
-    private float quantity;
+    private Float quantity;
 
+    public ProductResponse(String code, String name, String description, String price, String unit, Float quantity) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.unit = unit;
+        this.quantity = quantity;
+    }
+
+    public ProductResponse(ProductResponse productResponse1) {
+    }
 
     // Getter Methods
 
-    public float getId() {
+    public Long getId() {
         return id;
     }
 
@@ -83,13 +94,13 @@ public class AddNewProductResponse implements Serializable {
         return unit;
     }
 
-    public float getQuantity() {
+    public Float getQuantity() {
         return quantity;
     }
 
     // Setter Methods
 
-    public void setId(float id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -149,7 +160,7 @@ public class AddNewProductResponse implements Serializable {
         this.unit = unit;
     }
 
-    public void setQuantity(float quantity) {
+    public void setQuantity(Float quantity) {
         this.quantity = quantity;
     }
 }
