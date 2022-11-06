@@ -29,6 +29,14 @@ public class ProductResponse implements Serializable {
         this.quantity = quantity;
     }
 
+    public ProductResponse(String code, String name, String price, Float quantity, String record_status) {
+        this.code = code;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.record_status = record_status;
+    }
+
     public ProductResponse(ProductResponse productResponse1) {
     }
 

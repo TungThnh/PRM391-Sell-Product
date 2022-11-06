@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -15,47 +16,69 @@ import com.prm.prm391_sellproduct.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.TestProductGet;
 import response.ProductResponse;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>{
+public class ProductAdapter extends BaseAdapter {
 
     private ArrayList<ProductResponse> productResponseList;
+    private int layout;
+    Context context;
+
+    public ProductAdapter(ArrayList<ProductResponse> productResponseList, int layout, Context context) {
+        this.productResponseList = productResponseList;
+        this.layout = layout;
+        this.context = context;
+    }
+
+
 
     public ProductAdapter(ArrayList<ProductResponse> productResponseList) {
         this.productResponseList = productResponseList;
     }
 
-    @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.adminrv_list_view_product, parent, false);
-        return new ProductViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        ProductResponse productResponse = productResponseList.get(position);
-
-        if(productResponse == null){
-            return;
-        }
-
-        holder.txtRVCode.setText(productResponse.getCode());
-        holder.txtRVName.setText(productResponse.getName());
-        holder.txtRVQuantity.setText(String.valueOf(productResponse.getQuantity()));
-        holder.txtRVPrice.setText(String.valueOf(productResponse.getPrice()));
-        holder.cbRVStatus.setChecked(Boolean.parseBoolean(productResponse.getRecord_status()));
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         if(productResponseList != null) {
             return productResponseList.size();
         }
+
         return 0;
     }
+
+    @Override
+    public Object getItem(int position) {
+        return productResponseList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return productResponseList.get(position).getId();
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        View viewProduct;
+        if(view == null){
+            viewProduct = View.inflate(viewGroup.getContext(), R.layout.adminrv_list_view_product,null);
+        }else{
+            viewProduct = view;
+        }
+
+        ProductResponse product = (ProductResponse) getItem(i);
+        ((TextView) viewProduct.findViewById(R.id.txtADRVCode)).setText(String.format("Code = %d", product.getCode()));
+        ((TextView) viewProduct.findViewById(R.id.txtADRVName)).setText(String.format("Name = %d", product.getName()));
+        ((TextView) viewProduct.findViewById(R.id.txtADRVPrice)).setText(String.format("Price = %d", product.getPrice()));
+        ((TextView) viewProduct.findViewById(R.id.txtADRVQuantity)).setText(String.format("Quantity = %s", product.getQuantity()));
+        if(product.getRecord_status().equals("O")) {
+            ((CheckBox) viewProduct.findViewById(R.id.cbADRVStatus)).setChecked(true);
+        }else{
+            ((CheckBox) viewProduct.findViewById(R.id.cbADRVStatus)).setChecked(false);
+        }
+
+        return viewProduct;
+    }
+
 
     public class ProductViewHolder extends RecyclerView.ViewHolder{
 
@@ -73,4 +96,5 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
 
     }
+
 }

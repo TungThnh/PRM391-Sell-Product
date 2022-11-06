@@ -74,11 +74,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     LoginResponse loginResponse = response.body();
                     token = loginResponse.getId_token();
                     auth = getAuthClaimJWT(token,getPara);
-
                     if(auth.equals("User")){
                         startActivity(new Intent(LoginActivity.this, UserActivity.class).putExtra("data", loginResponse));
                     } if(auth.equals("ADMIN")) {
-                        startActivity(new Intent(LoginActivity.this, AddProductActivity.class).putExtra("data", loginResponse));
+                        startActivity(new Intent(LoginActivity.this, AdminActivity.class).putExtra("data", loginResponse));
                     }
                     finish();
 

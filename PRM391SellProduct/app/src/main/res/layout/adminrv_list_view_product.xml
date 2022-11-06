@@ -1,51 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/txtADRVQuantity"
-        android:layout_width="140dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/txtADRVPrice"
-        app:layout_constraintTop_toBottomOf="@+id/txtADRVName" />
-
-    <TextView
-        android:id="@+id/txtADRVName"
-        android:layout_width="140dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/txtADRVCode"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtADRVPrice"
-        android:layout_width="140dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtADRVCode" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/txtADRVCode"
-        android:layout_width="140dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=" code" />
+
+    <TextView
+        android:id="@+id/txtADRVName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=" name" />
+
+    <TextView
+        android:id="@+id/txtADRVQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=" quantity" />
+
+    <TextView
+        android:id="@+id/txtADRVPrice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=" price" />
 
     <CheckBox
         android:id="@+id/cbADRVStatus"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:textAlignment="center"
-        android:text="Status"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@+id/txtADRVName"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:text="status" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

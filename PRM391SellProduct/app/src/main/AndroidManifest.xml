@@ -17,6 +17,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".test.RegisterActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".test.TestActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".tung.activity.AddProductActivity"
             android:exported="true" />
         <activity
@@ -27,7 +37,9 @@
             android:exported="true" />
         <activity
             android:name=".tung.activity.AdminActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".tung.activity.LoginActivity"
             android:exported="true">
@@ -36,6 +48,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
