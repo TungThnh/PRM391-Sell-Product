@@ -1,6 +1,6 @@
 package api;
 
-import model.TestProductGet;
+import model.ProductFullResponse;
 import request.AddProductRequest;
 import request.LoginRequest;
 import request.RegisterRequest;
@@ -28,6 +28,6 @@ public interface AppService {
     Call<ProductResponse[]> getAllProduct();
 
     @GET("/sell/items?page=-1")
-    Call<TestProductGet> getAllProductNew();
+    Call<ProductFullResponse> getAllProductNew();
 
 }

@@ -8,9 +8,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.prm.prm391_sellproduct.R;
-import com.prm.prm391_sellproduct.tung.activity.LoginActivity;
+import com.prm.prm391_sellproduct.activity.LoginActivity;
 
 import api.ApiClient;
 import request.RegisterRequest;
@@ -22,17 +23,27 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
     Button btnSignup;
     EditText edUsername, edEmail,edPassword,edCpassword,edFullName;
+    private TextView aHaveAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         btnSignup = findViewById(R.id.btnLogin);
+        aHaveAccount = findViewById(R.id.ahaSign_in);
         edFullName = findViewById(R.id.editFullname);
         edUsername = findViewById(R.id.editUsername);
         edEmail = findViewById(R.id.editEmail);
         edPassword = findViewById(R.id.editPassword);
         edCpassword = findViewById(R.id.editcPassword);
+
+        aHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.prm.prm391_sellproduct">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,21 +28,21 @@
 
         </activity>
         <activity
-            android:name=".tung.activity.AddProductActivity"
+            android:name=".activity.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".tung.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".tung.activity.UserActivity"
+            android:name=".activity.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".tung.activity.AdminActivity"
+            android:name=".activity.AdminActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".tung.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct.tung.activity;
+package com.prm.prm391_sellproduct.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct.tung.activity;
+package com.prm.prm391_sellproduct.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,14 +8,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.android.jwt.Claim;
 import com.auth0.android.jwt.JWT;
 import com.prm.prm391_sellproduct.R;
+import com.prm.prm391_sellproduct.test.RegisterActivity;
 
 import api.ApiClient;
-import model.User;
 import request.LoginRequest;
 import response.LoginResponse;
 import retrofit2.Call;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
+    private TextView clickSignUp;
     private String token, auth;
     private String getPara = "auth";
 
@@ -37,10 +39,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        clickSignUp = findViewById(R.id.clickSignUp);
         edtUsername = findViewById(R.id.editUsername);
         edtPassword = findViewById(R.id.editPassword);
         btnSignIn = findViewById(R.id.btnSignIn);
+
+        clickSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
+            }
+        });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     token = loginResponse.getId_token();
                     auth = getAuthClaimJWT(token,getPara);
                     if(auth.equals("User")){
-                        startActivity(new Intent(LoginActivity.this, UserActivity.class).putExtra("data", loginResponse));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("data", loginResponse));
                     } if(auth.equals("ADMIN")) {
                         startActivity(new Intent(LoginActivity.this, AdminActivity.class).putExtra("data", loginResponse));
                     }

@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class TestProductGet {
+public class ProductFullResponse {
     ArrayList<items> items;
 
     public static class items{
@@ -155,11 +155,11 @@ public class TestProductGet {
         }
     }
 
-    public ArrayList<TestProductGet.items> getItems() {
+    public ArrayList<ProductFullResponse.items> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<TestProductGet.items> items) {
+    public void setItems(ArrayList<ProductFullResponse.items> items) {
         this.items = items;
     }
 }

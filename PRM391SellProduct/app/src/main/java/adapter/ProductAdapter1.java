@@ -1,6 +1,5 @@
 package adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import com.prm.prm391_sellproduct.R;
 
 import java.util.ArrayList;
 
-import model.TestProductGet;
 import response.Items;
 
 public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.ViewHolder> {

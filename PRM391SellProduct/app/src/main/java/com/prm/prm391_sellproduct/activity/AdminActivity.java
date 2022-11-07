@@ -1,4 +1,4 @@
-package com.prm.prm391_sellproduct.tung.activity;
+package com.prm.prm391_sellproduct.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,19 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.prm.prm391_sellproduct.R;
 
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +22,7 @@ import java.util.Collections;
 import adapter.ProductAdapter;
 import adapter.ProductAdapter1;
 import api.ApiClient;
-import model.TestProductGet;
+import model.ProductFullResponse;
 import response.Items;
 import response.ProductResponse;
 import retrofit2.Call;
@@ -56,13 +50,13 @@ public class AdminActivity extends AppCompatActivity {
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<TestProductGet> testProduct = ApiClient.getService().getAllProductNew();
-                testProduct.enqueue(new Callback<TestProductGet>() {
+                Call<ProductFullResponse> testProduct = ApiClient.getService().getAllProductNew();
+                testProduct.enqueue(new Callback<ProductFullResponse>() {
                     @Override
-                    public void onResponse(Call<TestProductGet> call, Response<TestProductGet> response) {
+                    public void onResponse(Call<ProductFullResponse> call, Response<ProductFullResponse> response) {
                         Log.e("TAG:Admin",  "onResponse: code : " + response.code());
-                        ArrayList<TestProductGet.items> getItem = response.body().getItems();
-                        for(TestProductGet.items item : getItem){
+                        ArrayList<ProductFullResponse.items> getItem = response.body().getItems();
+                        for(ProductFullResponse.items item : getItem){
                             Log.e("TAG: Toi luc lay roi - -", "onResponse: description" + item.getDescription());
                             itemsArrayList.add(new Items(item.getCode(),item.getName(),item.getRecord_status(), item.getPrice(),item.getQuantity()));
                         }
@@ -73,7 +67,7 @@ public class AdminActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<TestProductGet> call, Throwable t) {
+                    public void onFailure(Call<ProductFullResponse> call, Throwable t) {
                         Log.e("TAG:Admin --- ", "onFailure: "+t.getMessage());
                     }
                 });

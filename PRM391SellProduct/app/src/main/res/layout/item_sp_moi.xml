@@ -8,22 +8,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:src="@drawable/fpt"
-            android:layout_gravity="top|right"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+<!--        <ImageView-->
+<!--            android:src="@drawable/label"-->
+<!--            android:layout_gravity="top|right"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"/>-->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/itemproduct_image"
-                android:src="@drawable/img_file"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/itemsp_image"-->
+<!--                android:src="@drawable/ic_media_24"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"/>-->
             <TextView
-                android:id="@+id/txtproductName"
+                android:id="@+id/itemsp_ten"
                 android:text="Laptop"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -31,15 +31,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/txtprice"
-                android:text="Giá: 25000000 đ"
-                android:textSize="20sp"
-                android:textColor="#D32F2F"
+                android:id="@+id/itemsp_gia"
+                android:text="Giá : 250000"
+                android:textSize="15sp"
+                android:textColor="@android:color/holo_red_light"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+
         </LinearLayout>
+
+
     </FrameLayout>
 
 </androidx.cardview.widget.CardView>
