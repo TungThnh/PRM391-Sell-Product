@@ -14,8 +14,8 @@ import com.prm.prm391_sellproduct.R;
 import com.prm.prm391_sellproduct.activity.LoginActivity;
 
 import api.ApiClient;
-import request.RegisterRequest;
-import response.RegisterResponse;
+import com.prm.prm391_sellproduct.request.RegisterRequest;
+import com.prm.prm391_sellproduct.response.RegisterResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

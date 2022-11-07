@@ -1,4 +1,4 @@
-package request;
+package com.prm.prm391_sellproduct.request;
 
 public class RegisterRequest {
     private String full_name, username, email,password,cPass,address, phone;

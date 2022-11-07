@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.prm.prm391_sellproduct.R;
 
-import response.LoginResponse;
+import com.prm.prm391_sellproduct.response.LoginResponse;
 
 public class UserActivity extends AppCompatActivity {
     LoginResponse loginResponse;

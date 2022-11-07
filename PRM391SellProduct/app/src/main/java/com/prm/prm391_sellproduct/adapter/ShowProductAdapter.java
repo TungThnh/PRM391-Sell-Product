@@ -14,11 +14,11 @@ import com.prm.prm391_sellproduct.model.SanPhamMoi;
 
 import java.util.List;
 
-public class SanPhamMoiAdapter extends RecyclerView.Adapter<SanPhamMoiAdapter.MyViewHolder> {
+public class ShowProductAdapter extends RecyclerView.Adapter<ShowProductAdapter.MyViewHolder> {
     Context context;
     List<SanPhamMoi> array;
 
-    public SanPhamMoiAdapter(Context context, List<SanPhamMoi> array) {
+    public ShowProductAdapter(Context context, List<SanPhamMoi> array) {
         this.context = context;
         this.array = array;
     }

@@ -1,4 +1,4 @@
-package response;
+package com.prm.prm391_sellproduct.response;
 
 public class Items {
     private String code;
@@ -6,6 +6,8 @@ public class Items {
     private String record_status;
     private String price;
     private Float quantity;
+
+
 
     public Items(String code, String name, String record_status, String price, Float quantity) {
         this.code = code;

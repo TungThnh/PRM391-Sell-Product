@@ -13,9 +13,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.prm.prm391_sellproduct.R;
 
 import api.ApiClient;
-import request.AddProductRequest;
-import response.ProductResponse;
-import response.LoginResponse;
+import com.prm.prm391_sellproduct.request.AddProductRequest;
+import com.prm.prm391_sellproduct.response.ProductResponse;
+import com.prm.prm391_sellproduct.response.LoginResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

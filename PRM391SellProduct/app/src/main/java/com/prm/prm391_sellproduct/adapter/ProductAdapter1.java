@@ -1,4 +1,4 @@
-package adapter;
+package com.prm.prm391_sellproduct.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import com.prm.prm391_sellproduct.R;
 
 import java.util.ArrayList;
 
-import response.Items;
+import com.prm.prm391_sellproduct.response.Items;
 
 public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.ViewHolder> {
 
@@ -42,7 +42,12 @@ public class ProductAdapter1 extends RecyclerView.Adapter<ProductAdapter1.ViewHo
         holder.txtRVPrice.setText(testProductGet.getPrice());
         holder.txtRVQuantity.setText(String.valueOf(testProductGet.getQuantity()));
         cbStatus = testProductGet.getRecord_status();
-        holder.cbRVStatus.setChecked(true);
+        if(cbStatus.equals("O")) {
+            holder.cbRVStatus.setChecked(true);
+        }else{
+            holder.cbRVStatus.setChecked(false);
+        }
+
 
     }
 

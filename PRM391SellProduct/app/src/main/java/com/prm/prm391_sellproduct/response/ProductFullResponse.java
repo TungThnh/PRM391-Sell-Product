@@ -1,4 +1,4 @@
-package model;
+package com.prm.prm391_sellproduct.response;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,11 @@ public class ProductFullResponse {
         private Float quantity;
 
         public items(String code, String name, String price, Float quantity, String record_status) {
+        }
+
+        public items(String name, String price) {
+            this.name = name;
+            this.price = price;
         }
 
         public Long getId() {

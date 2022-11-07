@@ -1,4 +1,4 @@
-package response;
+package com.prm.prm391_sellproduct.response;
 
 public class RegisterResponse {
     private String username, email,password;

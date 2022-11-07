@@ -1,12 +1,12 @@
-package model;
+package com.prm.prm391_sellproduct.request;
 
-public class User {
+public class LoginRequest {
+
     private String username;
     private String password;
 
-    public String getUsername() {
-        return username;
-    }
+
+    public String getUsername() { return username; }
 
     public void setUsername(String username) {
         this.username = username;

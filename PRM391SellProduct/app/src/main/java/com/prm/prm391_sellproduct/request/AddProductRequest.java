@@ -1,4 +1,4 @@
-package request;
+package com.prm.prm391_sellproduct.request;
 
 public class AddProductRequest {
     private String name;

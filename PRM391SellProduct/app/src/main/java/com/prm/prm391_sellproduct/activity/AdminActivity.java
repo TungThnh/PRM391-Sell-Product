@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,12 +20,12 @@ import com.prm.prm391_sellproduct.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import adapter.ProductAdapter;
-import adapter.ProductAdapter1;
+import com.prm.prm391_sellproduct.adapter.ProductAdapter;
+import com.prm.prm391_sellproduct.adapter.ProductAdapter1;
 import api.ApiClient;
-import model.ProductFullResponse;
-import response.Items;
-import response.ProductResponse;
+import com.prm.prm391_sellproduct.response.ProductFullResponse;
+import com.prm.prm391_sellproduct.response.Items;
+import com.prm.prm391_sellproduct.response.ProductResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,12 +33,14 @@ import retrofit2.Response;
 public class AdminActivity extends AppCompatActivity {
 
     ProductResponse productResponse;
+    String cbStatus;
     private ListView lvProduct;
     private RecyclerView rvProduct;
     ProductAdapter productAdapter;
     ArrayList<ProductResponse> productResponseArrayList;
     private ArrayList<Items> itemsArrayList;
     Button btnView;
+    CheckBox cbrStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +48,10 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         itemsArrayList = new ArrayList<>();
+        cbrStatus = findViewById(R.id.cbADRVStatus);
         rvProduct = findViewById(R.id.listProduct);
         btnView = findViewById(R.id.btnView);
+
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,46 +86,46 @@ public class AdminActivity extends AppCompatActivity {
             Log.e("TAG", "Da vo duoc AdminActivity roi nha ====>");
         }
 
-//        getAllProduct();
-    }
-
-    private void setProductAdapter(ProductResponse[] productResponseSet) {
-        productResponseArrayList = new ArrayList<>();
-        Collections.addAll(productResponseArrayList, productResponseSet);
-        lvProduct = findViewById(R.id.listProduct);
-        productAdapter = new ProductAdapter(productResponseArrayList, lvProduct.getId(), AdminActivity.this);
-        productAdapter.notifyDataSetChanged();
-        lvProduct.setAdapter(productAdapter);
-    }
-
-    private void getAllProduct(){
-        Call<ProductResponse[]> productRespone = ApiClient.getService().getAllProduct();
-        productRespone.enqueue(new Callback<ProductResponse[]>() {
-            @Override
-            public void onResponse(Call<ProductResponse[]> call, Response<ProductResponse[]> response) {
-                if(response.isSuccessful()) {
-                    ProductResponse[] productResponses = response.body();
-                    if (productResponses == null || productResponses.length == 0) {
-                        setProductAdapter(productResponses);
-                        Toast.makeText(AdminActivity.this,"Không có dữ liệu", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    setProductAdapter(productResponses);
-                    Toast.makeText(AdminActivity.this,"Lấy được rồi", Toast.LENGTH_SHORT).show();
-                }else{
-                    String meassageToast = "An error occurred please try again later";
-                    Toast.makeText(AdminActivity.this,meassageToast, Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ProductResponse[]> call, Throwable t) {
-                String meassageToast = t.getLocalizedMessage();
-                Toast.makeText(AdminActivity.this,meassageToast, Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
     }
+
+//    private void setProductAdapter(ProductResponse[] productResponseSet) {
+//        productResponseArrayList = new ArrayList<>();
+//        Collections.addAll(productResponseArrayList, productResponseSet);
+//        lvProduct = findViewById(R.id.listProduct);
+//        productAdapter = new ProductAdapter(productResponseArrayList, lvProduct.getId(), AdminActivity.this);
+//        productAdapter.notifyDataSetChanged();
+//        lvProduct.setAdapter(productAdapter);
+//    }
+//
+//    private void getAllProduct(){
+//        Call<ProductResponse[]> productRespone = ApiClient.getService().getAllProduct();
+//        productRespone.enqueue(new Callback<ProductResponse[]>() {
+//            @Override
+//            public void onResponse(Call<ProductResponse[]> call, Response<ProductResponse[]> response) {
+//                if(response.isSuccessful()) {
+//                    ProductResponse[] productResponses = response.body();
+//                    if (productResponses == null || productResponses.length == 0) {
+//                        setProductAdapter(productResponses);
+//                        Toast.makeText(AdminActivity.this,"Không có dữ liệu", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    setProductAdapter(productResponses);
+//                    Toast.makeText(AdminActivity.this,"Lấy được rồi", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    String meassageToast = "An error occurred please try again later";
+//                    Toast.makeText(AdminActivity.this,meassageToast, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ProductResponse[]> call, Throwable t) {
+//                String meassageToast = t.getLocalizedMessage();
+//                Toast.makeText(AdminActivity.this,meassageToast, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//
+//    }
 
     //    private Trainee getTraineeFromLayout() {
 //        String name = txtTen.getText().toString();

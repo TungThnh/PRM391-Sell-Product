@@ -5,12 +5,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,8 +24,11 @@ import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.prm.prm391_sellproduct.R;
-import com.prm.prm391_sellproduct.adapter.SanPhamMoiAdapter;
+import com.prm.prm391_sellproduct.adapter.ProductAdapter;
+import com.prm.prm391_sellproduct.adapter.ShowProductAdapter;
 import com.prm.prm391_sellproduct.model.SanPhamMoi;
+import com.prm.prm391_sellproduct.response.ProductFullResponse;
+import com.prm.prm391_sellproduct.response.ProductResponeMain;
 import com.prm.prm391_sellproduct.retrofit.ApiBanHang;
 import com.prm.prm391_sellproduct.retrofit.RetrofitClient;
 import com.prm.prm391_sellproduct.utils.Utils;
@@ -31,10 +36,13 @@ import com.prm.prm391_sellproduct.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import api.ApiClient;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -44,22 +52,28 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewManHinhChinh;
     DrawerLayout drawerLayout;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private ArrayList<ProductResponeMain> listResponseMain;
     ApiBanHang apiBanHang;
     List<SanPhamMoi> mangSpMoi;
-    SanPhamMoiAdapter spAdapter;
+    ShowProductAdapter spAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        listResponseMain = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         Anhxa();
         ActionBar();
+        getProductToView();
+
+
 
         if (isConnected(this)){
             ActionViewFlipper();
-            getSpMoi();
+//            getSpMoi();
         }else{
             Toast.makeText(getApplicationContext(), "khong co internet", Toast.LENGTH_LONG).show();
         }
@@ -73,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         sanPhamMoiModel -> {
                             if(sanPhamMoiModel.isSuccess()){
                                 mangSpMoi = sanPhamMoiModel.getResult();
-                                spAdapter = new SanPhamMoiAdapter(getApplicationContext(),mangSpMoi);
+                                spAdapter = new ShowProductAdapter(getApplicationContext(),mangSpMoi);
                                 recyclerViewManHinhChinh.setAdapter(spAdapter);
                             }
                         },
@@ -115,6 +129,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void getProductToView(){
+        Call<ProductFullResponse> productResponeMainCall = ApiClient.getService().getAllProductForMain();
+        productResponeMainCall.enqueue(new Callback<ProductFullResponse>() {
+            @Override
+            public void onResponse(Call<ProductFullResponse> call, Response<ProductFullResponse> response) {
+                Log.e("TAG:Main",  "onResponse: code : " + response.code());
+                ArrayList<ProductFullResponse.items> getItem = response.body().getItems();
+                for(ProductFullResponse.items item : getItem){
+                    Log.e("TAG: Toi luc lay roi - -", "onResponse: name" + item.getName());
+                    listResponseMain.add(new ProductResponeMain(item.getName(),item.getPrice()));
+                }
+
+                ProductAdapter productAdapter = new ProductAdapter(listResponseMain);
+                recyclerViewManHinhChinh.setAdapter(productAdapter);
+                recyclerViewManHinhChinh.setLayoutManager(new LinearLayoutManager((MainActivity.this)));
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductFullResponse> call, Throwable t) {
+                Log.e("TAG:Main --- ", "onFailure: "+t.getMessage());
+            }
+        });
+    }
 
     private void Anhxa() {
         toolbar = findViewById(R.id.toobarmanhinhchinh);
