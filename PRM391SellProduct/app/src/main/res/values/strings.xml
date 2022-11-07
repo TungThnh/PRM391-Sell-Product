@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PRM391-SellProduct</string>
+    <string name="th_m_v_o_gi_h_ng">Thêm vào giỏ hàng</string>
+    <string name="gi_25000000">Giá 25000000 đ</string>
+    <string name="t_n_s_n_ph_m">Tên Sản Phẩm</string>
+    <string name="m_t_chi_ti_t_s_n_ph_m">Mô tả chi tiết sản phẩm</string>
+</resources>
