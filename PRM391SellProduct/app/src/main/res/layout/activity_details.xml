@@ -11,9 +11,27 @@
         app:title="Chi tiết sản phẩm"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="?attr/actionBarSize">
+
+        <FrameLayout
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right"
+            android:layout_width="55dp"
+            android:layout_height="?attr/actionBarSize">
+            <com.nex3z.notificationbadge.NotificationBadge
+                android:id="@+id/menu_amount"
+                android:layout_gravity="top|right"
+                android:layout_width="28dp"
+                android:layout_height="28dp"/>
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:src="@drawable/cart"
+                android:layout_width="35dp"
+                android:layout_height="35dp"/>
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
-        android:id="@+id/lautou1"
+        android:id="@+id/lauout1"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -21,7 +39,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imgDetails"
-            android:src="@drawable/asus_tuf_gami"
+            android:src="@drawable/img_file"
             android:layout_width="150dp"
             android:layout_height="200dp"/>
         <LinearLayout
@@ -51,6 +69,7 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/spinner"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_width="match_parent"
@@ -66,34 +85,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            app:layout_consttaintTop_toBottomOf="@id/layout1"
-            app:layout_consttaintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@string/m_t_chi_ti_t_s_n_ph_m"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtDecribe"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
-            </ScrollView>
-        </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/lauout1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Mô tả chi tiết sản phẩm"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtDeciption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"/>
+        </ScrollView>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
